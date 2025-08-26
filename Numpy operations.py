@@ -55,3 +55,35 @@ c=np.random.randint(3,20,(3,4))
 print(c)
 #reshaping an array
 print(c.reshape(2,6))
+
+#sorting the array
+new_array=np.random.randint(1,50,10)
+print(new_array)
+print(np.sort(new_array))
+
+#slicing
+print(new_array[2:7])
+print(new_array[:7])
+print(new_array[2:])
+print(new_array[::2])
+print(new_array[::-1])
+#slicing 2D array
+even=np.arange(2,26,2)
+print(even)
+reshaped=even.reshape(4,3)
+print(reshaped)
+print(reshaped[1:3,0:2])
+#picking indexs
+print(even[[1,0,3,7]])
+#conditional slicing
+print(new_array)
+print(new_array[new_array%2==0])
+print(new_array[new_array>20])
+#evaluating expressions
+#volume of cylinder
+r=np.random.randint(10,15,5)
+h=np.random.randint(20,25,5)
+volume=np.pi*r**2*h
+print(r)
+print(h)
+print(volume)

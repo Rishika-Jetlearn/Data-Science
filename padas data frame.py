@@ -52,7 +52,6 @@ print(titanic_df.iloc[[3,4,6],[2,5,6]])
 #conditional slicing
 print(titanic_df.loc[titanic_df["Age"]<18,["Name","Fare"]])
 print(titanic_df.loc[1:5,["Name","Age"]])
-
 #oldest person on boat
 oldest=titanic_df["Age"].max()
 print(titanic_df.loc[titanic_df["Age"]==oldest,["Name","Fare","Age","Survived"]])
@@ -91,3 +90,10 @@ print(titanic_df.agg({"Age":["min","max"],"Price":["sum","mean"],"Name":"count"}
 #grouping
 grouped=titanic_df.groupby(by="Pclass").max()
 print(grouped)
+#grouping by 2 categories
+print(titanic_df.groupby(by=["Pclass","Sex"]).max())
+print(titanic_df.groupby(by=["Pclass","Sex"])[["Age","Price"]].mean())
+#operations on text data
+print(titanic_df["Name"].str.lower())
+titanic_df["Last name"]=titanic_df["Name"].str.split().str.get(-1)#last item is alway index -1
+print(titanic_df)

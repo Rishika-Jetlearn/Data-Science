@@ -51,3 +51,27 @@ x=np.arange(2,12,3)
 y=[8,9,6,3]
 plt.scatter(x,y,color="yellow",marker="^",s=30)
 plt.show()
+#pie chart
+activites=["eating","sleeping","sports","crocheting","studying"]
+time_spent=[2,8,1,1,3]
+clrs=["red","blue","green","yellow","purple"]
+plt.figure(facecolor="lightblue")
+plt.pie(time_spent,labels=activites,colors=clrs,autopct='%1.0f%%',startangle=90,shadow=True)
+plt.show()
+#stack plot
+
+mon=[2,8,1,2,3]
+tue=[3,5,8,1,2]
+wed=[3,8,7,9,1]
+thu=[2,4,9,1,3]
+fri=[2,4,5,2,1]
+plt.stackplot(activites,mon,tue,wed,thu,fri,labels=["mon","tue","wed","thu","fri"])
+plt.legend()
+plt.show()
+#subplots
+plt.figure()
+plt.subplot(2,3,4)#first num is row,second is coloumns,and third is what you want to access
+plt.scatter(x,y,color="yellow",marker="^",s=30)
+plt.subplot(3,3,2)
+plt.pie(time_spent,labels=activites,colors=clrs,autopct='%1.0f%%',startangle=90,shadow=True)
+plt.show()

@@ -2,6 +2,12 @@ import pandas as pd
 import matplotlib.pyplot as plt
 books_df=pd.read_csv(r"C:\Users\Manisha\Desktop\Jetlearn-python-rishika\Data-Science\books.csv")
 print(books_df)
+books_df["publication_date"]=pd.to_datetime(books_df["publication_date"],format="%m/%d/%Y",errors="coerce")#change format to YY/MM/DD
+print(books_df.info())
+books_df=books_df[books_df["publication_date"].isna()==False]
+
+books_df=books_df[pd.to_numeric(books_df["text_reviews_count"],errors="coerce").notna()]#picking the numeric values
+books_df["text_reviews_count"]=books_df["text_reviews_count"].astype(int)#turning the numeric values to integers(eg.like the date)
 print(books_df.isna().sum())
 print(books_df.info())
 #1.How many book are published by Scholastic?
@@ -48,5 +54,16 @@ print(shortest[["title","num_pages"]])
 plt.show()
 #5 languages with the most number of books
 lang_5=books_df.groupby(by="language_code").count().sort_values(by="title",ascending=False).head(5)
-plt.pie(lang_5["title"],lang_5.index,autopct='%1.0f%%')
+plt.pie(lang_5["title"],labels=lang_5.index,autopct='%1.0f%%')
+plt.show()
+#Create a pie chart for the number of books by top 5 publishers.
+top_5_publishers=books_df.groupby(by="publisher").count().sort_index(ascending=False).head(5)
+print(top_5_publishers)
+plt.pie(top_5_publishers["title"],autopct='%1.0f%%',labels=top_5_publishers.index)
+plt.show()
+#Create a bar graph for the 10 books with most number of text reviews.
+most_text_reviews=books_df.sort_values(by="text_reviews_count",ascending=False).head(5)
+print(most_text_reviews)
+plt.bar(most_text_reviews["title"],most_text_reviews["text_reviews_count"])
+plt.xticks(rotation=90)
 plt.show()
